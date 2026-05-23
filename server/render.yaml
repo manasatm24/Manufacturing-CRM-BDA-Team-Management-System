@@ -1,0 +1,20 @@
+# Render service configuration for server
+# Deploy this file via Render dashboard (Create a new Web Service -> Import YAML)
+services:
+  - type: web
+    name: manufacturing-crm-server
+    env: node
+    region: oregon
+    plan: starter
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    envVars:
+      - key: MONGO_URI
+        fromDatabase: MONGO_URI
+      - key: JWT_SECRET
+        fromDatabase: JWT_SECRET
+    autoDeploy: true
+    disk:
+      sizeGb: 1
+    repo: <YOUR_GIT_REPO_URL>

@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install server dependencies
+        working-directory: server
+        run: |
+          npm ci
+
+      - name: Install client dependencies and build
+        working-directory: client
+        run: |
+          npm ci
+          npm run build
+
+      - name: Run server tests if present
+        run: |
+          if [ -f server/package.json ] && grep -q '"test"' server/package.json; then
+            (cd server && npm test)
+          else
+            echo "No server tests"
+          fi
+
+      - name: Run client tests if present
+        run: |
+          if [ -f client/package.json ] && grep -q '"test"' client/package.json; then
+            (cd client && npm test)
+          else
+            echo "No client tests"
+          fi
