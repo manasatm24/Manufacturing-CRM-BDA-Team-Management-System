@@ -8,6 +8,9 @@ const jwtSecret = () => process.env.JWT_SECRET || 'local-dev-secret';
 exports.register = async (req, res) => {
   const { name, email, password, role } = req.body;
   try {
+    if (!name || !email || !password) return res.status(400).json({ msg: 'Name, email and password are required' });
+    if (password.length < 6) return res.status(400).json({ msg: 'Password must be at least 6 characters' });
+
     if (global.useMemoryStore) {
       await memoryStore.ensureDemoUser();
       if (memoryStore.findUserByEmail(email)) return res.status(400).json({ msg: 'User already exists' });

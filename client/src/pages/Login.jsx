@@ -26,12 +26,13 @@ export default function Login(){
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <form onSubmit={submit} className="w-full max-w-md p-6 shadow rounded bg-white">
-        <h2 className="text-2xl mb-4 text-brand-500">Login</h2>
-        <input className="w-full p-2 mb-2 border rounded" placeholder="Email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} />
-        <input type="password" className="w-full p-2 mb-2 border rounded" placeholder="Password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})} />
-        <button className="w-full bg-brand-500 text-white p-2 rounded" disabled={loading}>{loading? '...' : 'Login'}</button>
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+      <form onSubmit={submit} className="w-full max-w-md rounded bg-white p-6 shadow">
+        <h2 className="mb-1 text-2xl font-bold text-brand-500">Login</h2>
+        <p className="mb-4 text-sm text-slate-500">Access the manufacturing CRM dashboard.</p>
+        <input className="mb-3 w-full rounded border p-2" placeholder="Email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} />
+        <input type="password" className="mb-3 w-full rounded border p-2" placeholder="Password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})} />
+        <button className="w-full rounded bg-brand-500 p-2 font-medium text-white hover:bg-brand-700" disabled={loading}>{loading? 'Logging in...' : 'Login'}</button>
         <p className="mt-4 text-center text-sm text-gray-600">
           Don&apos;t have an account?{' '}
           <Link to="/register" className="font-medium text-brand-500 hover:underline">

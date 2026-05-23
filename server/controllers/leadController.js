@@ -3,6 +3,8 @@ const memoryStore = require('../config/memoryStore');
 
 exports.createLead = async (req, res) => {
   try {
+    if (!req.body.clientName) return res.status(400).json({ msg: 'Client name is required' });
+
     if (global.useMemoryStore) {
       const lead = memoryStore.createLead(req.body);
       return res.json(lead);
