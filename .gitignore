@@ -17,3 +17,7 @@ yarn-error.log*
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local Node installer or packaged binaries
+node-v22.11.0-win-x64
+node-v22.11.0-win-x64.zip
