@@ -14,4 +14,4 @@ Deployment quick guide:
 - Frontend (Vercel): Deploy the `client` folder. Use `client/vercel.json` and set `VITE_API_URL` in Vercel environment variables.
 - Backend (Render): Deploy the `server` folder. You can import `server/render.yaml` in Render or create a Web Service and set `MONGO_URI` and `JWT_SECRET`.
 
-Be sure to push the repo to a Git provider and replace `<YOUR_GIT_REPO_URL>` in `server/render.yaml` before importing to Render.
+See `DEPLOYMENT.md` for the complete live deployment checklist.
